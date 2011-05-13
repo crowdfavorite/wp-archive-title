@@ -1,5 +1,4 @@
 <?php
-
 load_plugin_textdomain('cfpt');
 
 function cfpt_get_page_title() {
