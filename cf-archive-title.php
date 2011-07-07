@@ -8,7 +8,6 @@ function cfpt_get_page_title() {
 		'home_paged' => __('Latest / <b>page %s</b>', 'cfpt'),
 		'search' => __('Search results for <b>%s</b>', 'cfpt'),
 		'tag' => __('Tag archives for <b>%s</b>', 'cfpt'),
-		'category' => __('Category archives for <b>%s</b>', 'cfpt'),
 		'author' => __('Author archives for <b>%s</b>'),
 		'date' => __('Archives for <b>%s</b>', 'cfpt')
 	));
