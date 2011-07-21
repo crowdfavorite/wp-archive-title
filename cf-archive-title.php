@@ -42,7 +42,8 @@ function cfpt_get_page_title() {
 	} else if(!empty($cat)) {
 		$output = sprintf($messages['category'], single_cat_title('', false));
 	} else if(!empty($author)) {
-		$user = get_user_by('login', $author);
+		$user = get_user_by('slug', $author);
+		
 		if (is_object($user)) {
 			$output = sprintf($messages['author'], esc_html($user->display_name));
 		}
