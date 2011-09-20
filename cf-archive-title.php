@@ -6,12 +6,12 @@ function cfpt_get_page_title() {
 	global $wp_locale, $wp_query;
 	
 	$messages = apply_filters('cfpt_messages', array(
-		'home_paged' => __('Latest / <b>page %s</b>', 'cfpt'),
-		'search' => __('Search results for <b>%s</b>', 'cfpt'),
-		'tag' => __('Tag archives for <b>%s</b>', 'cfpt'),
-		'category' => __('Category archives for <b>%s</b>', 'cfpt'),
-		'author' => __('Author archives for <b>%s</b>'),
-		'date' => __('Archives for <b>%s</b>', 'cfpt')
+		'home_paged' => __('Latest / <em>page %s</em>', 'cfpt'),
+		'search' => __('Search results for <em>%s</em>', 'cfpt'),
+		'tag' => __('Tag archives for <em>%s</em>', 'cfpt'),
+		'category' => __('Category archives for <em>%s</em>', 'cfpt'),
+		'author' => __('Author archives for <em>%s</em>'),
+		'date' => __('Archives for <em>%s</em>', 'cfpt')
 	));
 
 	$vars = array(
