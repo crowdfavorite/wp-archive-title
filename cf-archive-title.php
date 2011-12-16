@@ -10,7 +10,7 @@ function cfpt_get_page_title() {
 		'search' => __('Search results for <em>%s</em>', 'cfpt'),
 		'tag' => __('Tag archives for <em>%s</em>', 'cfpt'),
 		'category' => __('Category archives for <em>%s</em>', 'cfpt'),
-		'author' => __('Author archives for <em>%s</em>'),
+		'author' => __('Author archives for <em>%s</em>', 'cfpt'),
 		'date' => __('Archives for <em>%s</em>', 'cfpt')
 	));
 
