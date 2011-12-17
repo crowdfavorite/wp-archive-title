@@ -35,23 +35,27 @@ function cfpt_get_page_title() {
 	if (is_front_page() && is_paged()) {
 		$output = sprintf($messages['home_paged'], $paged);
 	}
-	else if(!empty($s)) {
+	else if (!empty($s)) {
 		$output = sprintf($messages['search'], $s);
-	} else if(!empty($tag)) {
+	}
+	else if (!empty($tag)) {
 		$output = sprintf($messages['tag'], single_tag_title('', false));
-	} else if(!empty($cat)) {
+	}
+	else if (!empty($cat)) {
 		$output = sprintf($messages['category'], single_cat_title('', false));
-	} else if(!empty($author)) {
+	}
+	else if (!empty($author)) {
 		$user = get_user_by('slug', $author);
 		
 		if (is_object($user)) {
 			$output = sprintf($messages['author'], esc_html($user->display_name));
 		}
-	} else if(is_archive() && !empty($year)) {
+	}
+	else if (is_archive() && !empty($year)) {
 		$date = '';
-		if(!empty($monthnum)) {
+		if (!empty($monthnum)) {
 			$date .= $wp_locale->get_month($monthnum);
-			if(!empty($day)) {
+			if (!empty($day)) {
 				$date .= ' ' . $day;
 			}
 			$date .= ', ';
@@ -61,7 +65,7 @@ function cfpt_get_page_title() {
 	}
 
 	// If we've hit a page that has a title, output it.
-	if($output) {
+	if ($output) {
 		return $output;
 	}
 }
@@ -71,4 +75,3 @@ function cfpt_page_title($before = '', $after = '') {
 		echo $before . $title . $after;
 	}
 }
-?>
