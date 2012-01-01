@@ -2,6 +2,8 @@
 
 load_plugin_textdomain('cfpt');
 
+// TODO - post types
+
 function cfpt_get_page_title() {
 	global $wp_locale, $wp_query;
 	
@@ -9,21 +11,25 @@ function cfpt_get_page_title() {
 		'home_paged' => __('Latest / <em>page %s</em>', 'cfpt'),
 		'search' => __('Search results for <em>%s</em>', 'cfpt'),
 		'tag' => __('Tag archives for <em>%s</em>', 'cfpt'),
-		'category' => __('Category archives for <em>%s</em>', 'cfpt'),
-		'author' => __('Author archives for <em>%s</em>', 'cfpt'),
-		'date' => __('Archives for <em>%s</em>', 'cfpt')
+		'category' => __('<em>%s</em> Archives', 'cfpt'),
+		'taxonomy' => __('<em>%s</em> Archives', 'cfpt'),
+		'post_format' => __('<em>%s</em> Archives', 'cfpt'),
+		'author' => __('By <em>%s</em>', 'cfpt'),
+		'date' => __('<em>%s</em>', 'cfpt')
 	));
 
 	$vars = array(
 		'paged' => get_query_var('paged'),
 		'cat' => get_query_var('cat'),
 		'tag' => get_query_var('tag_id'),
+		'post_format' => get_query_var('post_format'),
 		's' => get_query_var('s'),
 		'year' => get_query_var('year'),
 		'm' => get_query_var('m'),
 		'monthnum' => get_query_var('monthnum'),
 		'day' => get_query_var('day'),
-		'author' => get_query_var('author_name')
+		'author' => get_query_var('author_name'),
+		'is_tax' => get_query_var('is_tax')
 	);
 	// Keep things kosher
 	$vars = array_map('esc_html', $vars);
@@ -43,6 +49,13 @@ function cfpt_get_page_title() {
 	}
 	else if (!empty($cat)) {
 		$output = sprintf($messages['category'], single_cat_title('', false));
+	}
+	else if (is_tax()) {
+		$term = get_queried_object();
+		$output = sprintf($messages['taxonomy'], esc_html($term->name));
+	}
+	else if (!empty($post_format)) {
+		$output = sprintf($messages['post_format'], ucwords($post_format));
 	}
 	else if (!empty($author)) {
 		$user = get_user_by('slug', $author);
@@ -64,10 +77,7 @@ function cfpt_get_page_title() {
 		$output = sprintf($messages['date'], $date);
 	}
 
-	// If we've hit a page that has a title, output it.
-	if ($output) {
-		return $output;
-	}
+	return $output;
 }
 
 function cfpt_page_title($before = '', $after = '') {
