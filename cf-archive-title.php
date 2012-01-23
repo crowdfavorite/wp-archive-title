@@ -2,11 +2,9 @@
 
 load_plugin_textdomain('cfpt');
 
-// TODO - post types
-
 function cfpt_get_page_title() {
-	global $wp_locale, $wp_query;
-	
+	global $wp_locale;
+
 	$messages = apply_filters('cfpt_messages', array(
 		'home_paged' => __('Latest / <em>page %s</em>', 'cfpt'),
 		'search' => __('Search results for <em>%s</em>', 'cfpt'),
@@ -14,6 +12,7 @@ function cfpt_get_page_title() {
 		'category' => __('<em>%s</em> Archives', 'cfpt'),
 		'taxonomy' => __('<em>%s</em> Archives', 'cfpt'),
 		'post_format' => __('<em>%s</em> Archives', 'cfpt'),
+		'post_type' => __('<em>%s</em> Archives', 'cfpt'),
 		'author' => __('By <em>%s</em>', 'cfpt'),
 		'date' => __('<em>%s</em>', 'cfpt')
 	));
@@ -63,6 +62,10 @@ function cfpt_get_page_title() {
 		if (is_object($user)) {
 			$output = sprintf($messages['author'], esc_html($user->display_name));
 		}
+	}
+	else if (is_post_type_archive()) {
+		$post_type_obj = get_queried_object();
+		$output = sprintf($messages['post_type'], $post_type_obj->labels->singular_name);
 	}
 	else if (is_archive() && !empty($year)) {
 		$date = '';
