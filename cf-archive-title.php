@@ -1,5 +1,9 @@
 <?php
 
+// Copyright (c) 2010-2012 Crowd Favorite (http://crowdfavorite.com)
+// Version 1.0
+// License: GPL v2.0 - http://opensource.org/licenses/GPL-2.0
+
 load_plugin_textdomain('cfpt');
 
 function cfpt_get_page_title() {
